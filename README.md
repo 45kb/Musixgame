@@ -4,7 +4,7 @@
 > Guess who sings the lyric snippet.
 
 JS major libraries in use:
-ReactJS, Redux, Webpack, ExpressJS
+React, Redux, Webpack, Express
 
 ![](https://i.imgur.com/MJtBirg.png)
 
