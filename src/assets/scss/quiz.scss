@@ -11,22 +11,28 @@
     font-weight: bolder;
     letter-spacing: 1px;
     -webkit-transition:  .1s linear;
+
     &:nth-child(odd) {
       background: $color-red;
+      
       &:focus,
       &:active {
         background: $color-darkred;
       }
     }
+
     &:nth-child(2) {
       background: $color-orange;
+
       &:focus,
       &:active {
         background: $color-darkorange;
       }
     }
+
     &:nth-child(3) {
       background: $color-green;
+
       &:focus,
       &:active {
         background: $color-darkgreen;
