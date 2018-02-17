@@ -19,9 +19,15 @@ class Scores extends React.Component {
       this.scores = this.db
       .map(({user, scores}) => ({
         user,
-        'bestScore': scores.sort((first, second) => Number(first) < Number(second)).reduce(prev => Number(prev))
+        'bestScore': scores
+        .sort((first, second) => {
+          return Number(first) < Number(second);
+        })
+        .reduce(prev => Number(prev))
       }))
-      .sort((first, second) => first.maxScore < second.maxScore);
+      .sort((first, second) => {
+        return Number(first.bestScore) < Number(second.bestScore);
+      });
 
       this.scores = _.uniq(this.scores);
     };
