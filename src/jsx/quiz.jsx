@@ -12,7 +12,7 @@ let QUIZ_ANSWERS = 0
   , QUIZ_CORRECT_ANSWER_POINTS = Number(configs.QUIZ_CORRECT_ANSWER_POINTS)
   , QUIZ_POINTS = 0;
 
-const API_URL = configs.API_URL
+const WS_URL = configs.WS_URL
   , mapStateToProps = ({show, start, artists}) => ({show, start, artists})
   , mapDispatchToProps = {
     'showQuiz': () => {
@@ -42,25 +42,25 @@ class Quiz extends React.Component {
     super(props);
 
     async function getSong (artist) {
-      let getArtist = await fetch(`${API_URL}artist?name=${artist}`);
+      let getArtist = await fetch(`${WS_URL}artist?name=${artist}`);
       let resp1 = await getArtist.json();
       let artistID = JSON.parse(resp1).message.body.artist_list[0].artist.artist_id;
 
       console.info('Artist ID is:', artistID);
 
-      let getArtistAlbumID = await fetch(`${API_URL}artist/albums/?artist_id=${artistID}`);
+      let getArtistAlbumID = await fetch(`${WS_URL}artist/albums/?artist_id=${artistID}`);
       let resp2 = await getArtistAlbumID.json();
       let albumID = JSON.parse(resp2).message.body.album_list[0].album.album_id;
 
       console.info('Album ID is:', albumID);
 
-      let getAlbumSongID = await fetch(`${API_URL}artist/album/song?album_id=${albumID}`);
+      let getAlbumSongID = await fetch(`${WS_URL}artist/album/song?album_id=${albumID}`);
       let resp3 = await getAlbumSongID.json();
       let trackID = JSON.parse(resp3).message.body.track_list[0].track.track_id;
 
       console.info('Track ID is:', trackID);
 
-      let getLyric = await fetch(`${API_URL}artist/song/snippet?track_id=${trackID}`);
+      let getLyric = await fetch(`${WS_URL}artist/song/snippet?track_id=${trackID}`);
       let resp4 = await getLyric.json();
 
       //GOT SONG LYRIC

@@ -1,7 +1,7 @@
 {
-  "name": "musicapp",
+  "name": "Musixgame",
   "version": "1.0.0",
-  "description": "music test app for musixmatch",
+  "description": "guess who sings simple webapp",
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist",

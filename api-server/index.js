@@ -3,8 +3,9 @@
     , request = require('request')
     , cors = require('cors')
     , app = express()
-    , API_KEY = 'bf40802cb625030eaa5e7d73148cf5fc'
-    , API_URL = 'http://api.musixmatch.com/ws/1.1/';
+    , config = require('../config.json')
+    , API_KEY = config.API_KEY
+    , API_URL = config.API_URL;
 
   app.use(cors({
     'allowedHeaders': ['sessionId', 'Content-Type'],
