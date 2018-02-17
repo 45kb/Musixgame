@@ -24,4 +24,7 @@ React, Redux, Webpack, Express
 
 ## Game configuration
 
-Just open and edit the main `config.json` file if you want to configure the number of answers for a quiz and the points for each correct answer.
+Just open and edit the main `config.json` now you can configure:
+- the number of answers each quiz has (quiz duration)
+- the points for each correct answer
+- more things...such as api url, key and ws url.
