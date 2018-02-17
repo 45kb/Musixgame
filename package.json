@@ -1,0 +1,66 @@
+{
+  "name": "musicapp",
+  "version": "1.0.0",
+  "description": "music test app for musixmatch",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf dist",
+    "lint": "eslint .",
+    "validate": "npm-run-all --sequential clean lint",
+    "build:dev": "webpack --env.dev",
+    "build:prod": "webpack --env.prod",
+    "build": "npm-run-all --sequential validate",
+    "prestart": "npm run build",
+    "start": "webpack-dev-server --env.dev",
+    "server": "node api-server/index.js",
+    "precommit": "npm run validate",
+    "preversion": "npm-run-all validate build:prod",
+    "version": "git add -A .",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/45kb/quiz_music_app.git"
+  },
+  "author": "Filippo Oretti",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/45kb/quiz_music_app/issues"
+  },
+  "homepage": "https://github.com/45kb/quiz_music_app#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.9",
+    "eslint": "^4.17.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.6",
+    "html-webpack-plugin": "^2.30.1",
+    "husky": "^0.14.3",
+    "mkdirp": "^0.5.1",
+    "node-sass": "^4.7.2",
+    "npm-run-all": "^4.1.2",
+    "resolve-url-loader": "^2.2.1",
+    "rimraf": "^2.6.2",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.20.1",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.1"
+  },
+  "dependencies": {
+    "animate.css": "^3.6.1",
+    "cors": "^2.8.4",
+    "csshelper": "^1.0.1",
+    "expressjs": "^1.0.1",
+    "font-awesome": "^4.7.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "roboto-fontface-woff": "^0.8.0",
+    "underscore": "^1.8.3"
+  }
+}

@@ -1,0 +1,64 @@
+html {
+    overflow: hidden;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    overflow: auto;
+}
+body,html {
+  background: blue;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  overflow-x: none;
+
+  * {
+    outline: none;
+    text-decoration: none;
+
+    &:hover,
+    &:active,
+    &:focus {
+      outline: none;
+      text-decoration: none;
+    }
+  }
+}
+::placeholder {
+  color: rgba(255,255,255, .8);
+}
+input {
+  &[type="text"] {
+    background: $color-darkblue;
+    font-size: 20px;
+    font-weight: bolder;
+    letter-spacing: 1px;
+    padding: 30px ;
+    color: white;
+    text-align: center;
+  }
+}
+button {
+  background: $color-darkblue;
+  -webkit-transition:  .1s linear;
+  font-size: 20px;
+  font-weight: bolder;
+  letter-spacing: 1px;
+  padding: 22px 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+  &:active {
+    background: rgba(0,0,0, .8);
+    text-shadow: 0px 0px 20px black;
+  }
+}
+section {
+  h1 {
+    margin: 50px 0;
+  }
+  &:not(.menu) {
+    margin-top: 58px;
+  }
+}
