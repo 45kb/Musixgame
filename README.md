@@ -8,6 +8,10 @@ React, Redux, Webpack, Express
 
 ![](https://i.imgur.com/MJtBirg.png)
 
+## Installation
+
+> $ npm i
+
 ## Start server
 
 > $ npm run server
