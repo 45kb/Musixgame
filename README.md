@@ -1,7 +1,7 @@
 # Musixgame
 ### It's a WebApp
 
-> Guess who sings the lyric snippet.
+> Guess who sings the song.
 
 JS major libraries in use:
 React, Redux, Webpack, Express
