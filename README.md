@@ -5,6 +5,8 @@ Guess who sings the lyric snippet.
 JS major libraries in use:
 ReactJS, Redux, Webpack, ExpressJS
 
+![]({{site.baseurl}}/https://i.imgur.com/MJtBirg.png)
+
 ## start api server
 
 > $ npm run server
