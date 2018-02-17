@@ -12,7 +12,7 @@ let QUIZ_ANSWERS = 0
   , QUIZ_CORRECT_ANSWER_POINTS = Number(configs.QUIZ_CORRECT_ANSWER_POINTS)
   , QUIZ_POINTS = 0;
 
-const API_URL = 'http://localhost:3000/'
+const API_URL = configs.API_URL
   , mapStateToProps = ({show, start, artists}) => ({show, start, artists})
   , mapDispatchToProps = {
     'showQuiz': () => {
