@@ -22,3 +22,6 @@ React, Redux, Webpack, Express
 
 #### then browse http://localhost:8080
 
+## Game configuration
+
+Just open and edit the main config.json file if you want to configure the number of answers for a quiz and the points for each correct answer.

@@ -5,10 +5,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'underscore';
+import configs from '../../config.json';
 
 let QUIZ_ANSWERS = 0
-  , QUIZ_MAX_ANSWERS = 6
-  , QUIZ_CORRECT_ANSWER_POINTS = 50
+  , QUIZ_MAX_ANSWERS = Number(configs.QUIZ_MAX_ANSWERS)
+  , QUIZ_CORRECT_ANSWER_POINTS = Number(configs.QUIZ_CORRECT_ANSWER_POINTS)
   , QUIZ_POINTS = 0;
 
 const API_URL = 'http://localhost:3000/'
