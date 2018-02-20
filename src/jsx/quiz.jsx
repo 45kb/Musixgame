@@ -68,16 +68,6 @@ class Quiz extends React.Component {
     }
 
     this.launchQuiz = () => {
-
-    // Tutto questo lanciabile ad ogni risposta
-      // Fetch di un album di un artista (random da props)
-      // Fetch di una canzone di in album di artista
-      // Fetch della lyric di una canzone
-      // Metti nelle props del componente testo da mostrare
-      // Ricorda artista preso
-      //ogni 6 risposte poi lanci l'evento che mostra ....
-      //la pagina di end del quiz che chiede lo username,
-      //al save dello username salvi user + score in una mapDispatchToProps
       console.info('Starting quiz');
       this.artists = _.sample(this.props.artists, 3);
       this.artist = _.sample(this.artists, 1)[0];
