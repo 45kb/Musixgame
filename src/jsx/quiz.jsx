@@ -1,4 +1,4 @@
-/*global console fetch*/
+/*global console fetch localStorage*/
 /*Quiz component*/
 /*The game starts here*/
 
@@ -6,11 +6,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'underscore';
 import configs from '../../config.json';
-
-let QUIZ_ANSWERS = 0
-  , QUIZ_MAX_ANSWERS = Number(configs.QUIZ_MAX_ANSWERS)
-  , QUIZ_CORRECT_ANSWER_POINTS = Number(configs.QUIZ_CORRECT_ANSWER_POINTS)
-  , QUIZ_POINTS = 0;
 
 const WS_URL = configs.WS_URL
   , mapStateToProps = ({show, start, artists}) => ({show, start, artists})
@@ -41,7 +36,16 @@ class Quiz extends React.Component {
   constructor(props) {
     super(props);
 
-    async function getSong (artist) {
+    this.QUIZ_ANSWERS = 0;
+    this.QUIZ_MAX_ANSWERS = Number(configs.QUIZ_MAX_ANSWERS);
+    this.QUIZ_CORRECT_ANSWER_POINTS = Number(configs.QUIZ_CORRECT_ANSWER_POINTS);
+    this.QUIZ_POINTS = 0;
+
+    this.launchQuiz();
+  }
+
+  launchQuiz() {
+    const getSong = async artist => {
       let getArtist = await fetch(`${WS_URL}artist?name=${artist}`);
       let resp1 = await getArtist.json();
       let artistID = JSON.parse(resp1).message.body.artist_list[0].artist.artist_id;
@@ -65,43 +69,39 @@ class Quiz extends React.Component {
 
       //GOT SONG LYRIC
       return JSON.parse(resp4).message.body.snippet.snippet_body;
-    }
-
-    this.launchQuiz = () => {
-      console.info('Starting quiz');
-      this.artists = _.sample(this.props.artists, 3);
-      this.artist = _.sample(this.artists, 1)[0];
-      this.song = false;
-      console.info('Random artists are', this.artists);
-      console.info('Correct Answer is ----->', this.artist);
-
-      getSong(this.artist).then(song => {
-        this.song = song;
-        this.props.startQuiz();
-        this.props.showQuiz();
-        console.info('Song Snippet Lyric is ---->', this.song);
-      }).catch(err => {
-        this.props.stopQuiz();
-        this.launchQuiz();
-        console.error(err);
-      });
     };
 
-    this.launchQuiz();
+    console.info('Starting quiz');
+    this.artists = _.sample(this.props.artists, 3);
+    this.artist = _.sample(this.artists, 1)[0];
+    this.song = false;
+    console.info('Random artists are', this.artists);
+    console.info('Correct Answer is ----->', this.artist);
+
+    getSong(this.artist).then(song => {
+      this.song = song;
+      this.props.startQuiz();
+      this.props.showQuiz();
+      console.info('Song Snippet Lyric is ---->', this.song);
+    }).catch(err => {
+      this.props.stopQuiz();
+      this.launchQuiz();
+      console.error(err);
+    });
   }
 
   answerQuiz(artist) {
     //increment answers to reach quiz end
-    QUIZ_ANSWERS += 1;
+    this.QUIZ_ANSWERS = this.QUIZ_ANSWERS + 1;
     //give answer points
     if (artist.toLowerCase() === this.artist.toLowerCase()) {
-      QUIZ_POINTS += QUIZ_CORRECT_ANSWER_POINTS;
+      this.QUIZ_POINTS = this.QUIZ_POINTS + this.QUIZ_CORRECT_ANSWER_POINTS;
     }
     //if is quiz ended
-    if (QUIZ_ANSWERS === QUIZ_MAX_ANSWERS) {
-      QUIZ_ANSWERS = 0;
-      localStorage.setItem('LATEST_QUIZ_SCORE', QUIZ_POINTS);
-      console.log('Your score is ---->', QUIZ_POINTS, this.artist);
+    if (this.QUIZ_ANSWERS === this.QUIZ_MAX_ANSWERS) {
+      this.QUIZ_ANSWERS = 0;
+      localStorage.setItem('LATEST_QUIZ_SCORE', this.QUIZ_POINTS);
+      console.log('Your score is ---->', this.QUIZ_POINTS, this.artist);
       this.props.showQuizEnd();
     } else {
     //continue quiz
