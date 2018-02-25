@@ -47,7 +47,7 @@ class Quiz extends React.Component {
     this.launchQuiz();
   }
   componentWillReceiveProps(a,b,c) {
-    //console.log('oooooooook',a,b,c);
+    //maybe in here
   }
   launchQuiz() {
     const getSong = async artist => {
