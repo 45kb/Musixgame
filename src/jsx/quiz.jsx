@@ -46,26 +46,30 @@ class Quiz extends React.Component {
 
   launchQuiz() {
     const getSong = async artist => {
-      let getArtist = await fetch(`${WS_URL}artist?name=${artist}`);
-      let resp1 = await getArtist.json();
-      let artistID = JSON.parse(resp1).message.body.artist_list[0].artist.artist_id;
+      let getArtist = await fetch(`${WS_URL}artist?name=${artist}`)
+        , resp1 = await getArtist.json()
+        , artistID = JSON.parse(resp1).message.body.artist_list[0].artist.artist_id;
 
       console.info('Artist ID is:', artistID);
 
-      let getArtistAlbumID = await fetch(`${WS_URL}artist/albums/?artist_id=${artistID}`);
-      let resp2 = await getArtistAlbumID.json();
-      let albumID = JSON.parse(resp2).message.body.album_list[0].album.album_id;
+      let getArtistAlbumID = await fetch(`${WS_URL}artist/albums/?artist_id=${artistID}`)
+        , resp2 = await getArtistAlbumID.json()
+        , albums = JSON.parse(resp2).message.body.album_list
+        , randomAlbum = albums[Math.floor(Math.random() * albums.length)]
+        , albumID = randomAlbum.album.album_id;
 
       console.info('Album ID is:', albumID);
 
-      let getAlbumSongID = await fetch(`${WS_URL}artist/album/song?album_id=${albumID}`);
-      let resp3 = await getAlbumSongID.json();
-      let trackID = JSON.parse(resp3).message.body.track_list[0].track.track_id;
+      let getAlbumSongID = await fetch(`${WS_URL}artist/album/song?album_id=${albumID}`)
+        , resp3 = await getAlbumSongID.json()
+        , tracks = JSON.parse(resp3).message.body.track_list
+        , randomTrack = tracks[Math.floor(Math.random() * tracks.length)]
+        , trackID = randomTrack.track.track_id;
 
       console.info('Track ID is:', trackID);
 
-      let getLyric = await fetch(`${WS_URL}artist/song/snippet?track_id=${trackID}`);
-      let resp4 = await getLyric.json();
+      let getLyric = await fetch(`${WS_URL}artist/song/snippet?track_id=${trackID}`)
+        , resp4 = await getLyric.json();
 
       //GOT SONG LYRIC
       return JSON.parse(resp4).message.body.snippet.snippet_body;
