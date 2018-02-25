@@ -43,7 +43,9 @@ class Quiz extends React.Component {
 
     this.launchQuiz();
   }
-
+  componentWillReceiveProps(a,b,c) {
+    console.log('oooooooook',a,b,c);
+  }
   launchQuiz() {
     const getSong = async artist => {
       let getArtist = await fetch(`${WS_URL}artist?name=${artist}`)
@@ -116,8 +118,7 @@ class Quiz extends React.Component {
 
   render() {
     return <div>
-      <div className={`loading center-content line hide
-         ${this.props.show === 'quiz' && this.props.start === false ? 'show' : '' }`}>
+      <div className="loading center-content line">
       <div className="separator50"></div>
       <div className="separator50"></div>
         <div className="spinner">
@@ -127,7 +128,7 @@ class Quiz extends React.Component {
         </div>
       </div>
       <section className={`center-content quiz hide
-         ${this.props.show === 'quiz' && this.props.start === true ? 'show' : '' }`}>
+         ${this.props.start === true ? 'show' : '' }`}>
       <div className="line">
         <h1 className="col8 offset-left1 animated fadeInDown song">
           {this.song}...

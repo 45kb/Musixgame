@@ -60,8 +60,7 @@ class User extends React.Component {
   }
 
   render() {
-    return <section onLoad={this.init()} className={`center-content user hide
-         ${this.props.show === 'user' ? 'show' : '' }`}>
+    return <section onLoad={this.init()} className="center-content user">
       <h1 className="line-compress">
         {this.retrieveSessionUsername() || 'Hey Anonymous!'}
       </h1>

@@ -36,8 +36,7 @@ class Scores extends React.Component {
   }
 
   render() {
-    return <section onLoad={this.init()} className={`center-content scores hide
-         ${this.props.show === 'scores' ? 'show' : '' }`}>
+    return <section onLoad={this.init()} className='center-content scores'>
       <h1 className="line-compress">
         Highest Scores
       </h1>

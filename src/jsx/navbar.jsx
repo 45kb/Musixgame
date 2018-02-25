@@ -3,6 +3,7 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
+import { Link } from 'react-router-dom';
 /*maps the redux state properties into component props --see reducers/index.js */
 const mapStateToProps = ({show}) => ({show})
 /*maps the redux actions to dispatch into component props --see reducers/index.js */
@@ -31,21 +32,17 @@ class Navbar extends React.Component {
 
   render() {
     return <section className="center-content line menu fixed top left layer2">
-
-      <a onClick={this.props.showScores} className={`col3 center-content
-           ${this.props.show === 'scores' ? 'active' : ''}`}>
+      <Link to="/scores" className="col3 center-content">
         <i className="fa fa-star-o"></i>
-      </a>
+      </Link>
 
-      <a onClick={this.props.showQuiz} className={`col4 center-content
-           ${this.props.show === 'quiz' || this.props.show === 'quiz-end' ? 'active' : ''}`}>
+      <Link to="/" className="col4 center-content">
         <i className="fa fa-play-circle"></i>
-      </a>
+      </Link>
 
-      <a onClick={this.props.showUser} className={`col3 center-content
-            ${this.props.show === 'user' ? 'active' : ''}`}>
+      <Link to="/user" className="col3 center-content">
         <i className="fa fa-smile-o"></i>
-      </a>
+      </Link>
     </section>;
   }
 }

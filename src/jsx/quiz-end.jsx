@@ -64,8 +64,7 @@ class QuizEnd extends React.Component {
   }
 
   render() {
-    return <section className={`center-content quizend
-        ${this.props.show === 'quiz-end' ? 'show' : 'hide' }`}>
+    return <section className="center-content quizend">
       <h1 className="line-compress">
         Your Score is
         <div className="separator30"></div>

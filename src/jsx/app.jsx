@@ -1,5 +1,6 @@
 /*global localStorage*/
 import React from 'react';
+import {BrowserRouter, Route, Link} from 'react-router-dom';
 
 import 'csshelper/dist/helper.min.css';
 import 'roboto-fontface-woff/css/roboto/sass/roboto-fontface.scss';
@@ -26,13 +27,15 @@ class App extends React.Component {
   }
 
   render() {
-    return <div className="line">
+    return <BrowserRouter>
+      <div className="line">
       <Navbar></Navbar>
-      <User></User>
-      <Scores></Scores>
-      <Quiz></Quiz>
-      <QuizEnd></QuizEnd>
-    </div>;
+      <Route path="/user" component={User}/>
+      <Route path="/" exact component={Quiz}/>
+      <Route path="/quizend" component={QuizEnd}/>
+      <Route path="/scores" component={Scores}/>
+    </div>
+    </BrowserRouter>;
   }
 }
 
