@@ -3,7 +3,9 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
+/*eslint-disable*/
 import { Link } from 'react-router-dom';
+/*eslint-enable*/
 /*maps the redux state properties into component props --see reducers/index.js */
 const mapStateToProps = ({show}) => ({show})
 /*maps the redux actions to dispatch into component props --see reducers/index.js */

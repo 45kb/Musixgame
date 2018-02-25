@@ -6,6 +6,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'underscore';
 import configs from '../../config.json';
+/*eslint-disable*/
+import {Router} from 'react-router-dom';
+/*eslint-enable*/
 
 const WS_URL = configs.WS_URL
   , mapStateToProps = ({show, start, artists}) => ({show, start, artists})
@@ -44,7 +47,7 @@ class Quiz extends React.Component {
     this.launchQuiz();
   }
   componentWillReceiveProps(a,b,c) {
-    console.log('oooooooook',a,b,c);
+    //console.log('oooooooook',a,b,c);
   }
   launchQuiz() {
     const getSong = async artist => {
@@ -104,6 +107,7 @@ class Quiz extends React.Component {
       this.QUIZ_POINTS = this.QUIZ_POINTS + this.QUIZ_CORRECT_ANSWER_POINTS;
     }
     //if is quiz ended
+    console.log(this.QUIZ_ANSWERS);
     if (this.QUIZ_ANSWERS === this.QUIZ_MAX_ANSWERS) {
       this.QUIZ_ANSWERS = 0;
       localStorage.setItem('LATEST_QUIZ_SCORE', this.QUIZ_POINTS);
