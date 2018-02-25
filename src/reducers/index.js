@@ -50,12 +50,6 @@ export default (state = initialState, action) => {
         'show': 'quiz'
       });
 
-    case 'SHOW_QUIZEND':
-
-    return Object.assign({}, state, {
-      'show': 'quiz-end'
-    });
-
     case 'SHOW_USER':
 
     return Object.assign({}, state, {

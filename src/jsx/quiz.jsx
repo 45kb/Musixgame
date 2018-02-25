@@ -13,16 +13,6 @@ import {Router} from 'react-router-dom';
 const WS_URL = configs.WS_URL
   , mapStateToProps = ({show, start, artists}) => ({show, start, artists})
   , mapDispatchToProps = {
-    'showQuiz': () => {
-      return {
-        'type': 'SHOW_QUIZ'
-      };
-    },
-    'showQuizEnd': () => {
-      return {
-        'type': 'SHOW_QUIZEND'
-      };
-    },
     'startQuiz': () => {
       return {
         'type': 'START_QUIZ'
@@ -38,18 +28,25 @@ const WS_URL = configs.WS_URL
 class Quiz extends React.Component {
   constructor(props) {
     super(props);
+    this.init(true);
+    this.state = {
+      'song': false
+    }
+  }
 
+  componentWillReceiveProps() {
+    this.init();
+  }
+
+  init(fromScratch) {
     this.QUIZ_ANSWERS = 0;
     this.QUIZ_MAX_ANSWERS = Number(configs.QUIZ_MAX_ANSWERS);
     this.QUIZ_CORRECT_ANSWER_POINTS = Number(configs.QUIZ_CORRECT_ANSWER_POINTS);
     this.QUIZ_POINTS = 0;
+    this.launchQuiz(fromScratch);
+  }
 
-    this.launchQuiz();
-  }
-  componentWillReceiveProps(a,b,c) {
-    //maybe in here
-  }
-  launchQuiz() {
+  launchQuiz(fromScratch) {
     const getSong = async artist => {
       let getArtist = await fetch(`${WS_URL}artist?name=${artist}`)
         , resp1 = await getArtist.json()
@@ -83,15 +80,20 @@ class Quiz extends React.Component {
     console.info('Starting quiz');
     this.artists = _.sample(this.props.artists, 3);
     this.artist = _.sample(this.artists, 1)[0];
-    this.song = false;
+
     console.info('Random artists are', this.artists);
     console.info('Correct Answer is ----->', this.artist);
 
     getSong(this.artist).then(song => {
-      this.song = song;
+      if (fromScratch) {
+        this.state = {song};
+      } else {
+        this.setState({
+          song
+        });
+      }
       this.props.startQuiz();
-      this.props.showQuiz();
-      console.info('Song Snippet Lyric is ---->', this.song);
+      console.info('Song Snippet Lyric is ---->', this.state.song);
     }).catch(err => {
       this.props.stopQuiz();
       this.launchQuiz();
@@ -112,7 +114,8 @@ class Quiz extends React.Component {
       this.QUIZ_ANSWERS = 0;
       localStorage.setItem('LATEST_QUIZ_SCORE', this.QUIZ_POINTS);
       console.log('Your score is ---->', this.QUIZ_POINTS, this.artist);
-      this.props.showQuizEnd();
+      //this.props.showQuizEnd();
+      this.props.history.push('/quizend');
     } else {
     //continue quiz
       this.props.stopQuiz();
@@ -131,11 +134,10 @@ class Quiz extends React.Component {
           <div className="bounce3"></div>
         </div>
       </div>
-      <section className={`center-content quiz hide
-         ${this.props.start === true ? 'show' : '' }`}>
+      <section className="center-content quiz">
       <div className="line">
         <h1 className="col8 offset-left1 animated fadeInDown song">
-          {this.song}...
+          {this.state.song}...
         </h1>
         <div className="line fixed bottom left">
           <div className="line animated fadeInUp">
