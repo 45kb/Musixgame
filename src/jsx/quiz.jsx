@@ -11,20 +11,8 @@ import {Router} from 'react-router-dom';
 /*eslint-enable*/
 
 const WS_URL = configs.WS_URL
-  , mapStateToProps = ({show, start, artists}) => ({show, start, artists})
-  , mapDispatchToProps = {
-    'startQuiz': () => {
-      return {
-        'type': 'START_QUIZ'
-      };
-    },
-    'stopQuiz': () => {
-      return {
-        'type': 'STOP_QUIZ'
-      };
-    }
-  };
-
+  , mapStateToProps = ({show, start, artists}) => ({show, start, artists});
+  
 class Quiz extends React.Component {
   constructor(props) {
     super(props);
@@ -38,15 +26,15 @@ class Quiz extends React.Component {
     this.init();
   }
 
-  init(fromScratch) {
+  init() {
     this.QUIZ_ANSWERS = 0;
     this.QUIZ_MAX_ANSWERS = Number(configs.QUIZ_MAX_ANSWERS);
     this.QUIZ_CORRECT_ANSWER_POINTS = Number(configs.QUIZ_CORRECT_ANSWER_POINTS);
     this.QUIZ_POINTS = 0;
-    this.launchQuiz(fromScratch);
+    this.launchQuiz();
   }
 
-  launchQuiz(fromScratch) {
+  launchQuiz() {
     const getSong = async artist => {
       let getArtist = await fetch(`${WS_URL}artist?name=${artist}`)
         , resp1 = await getArtist.json()
@@ -74,7 +62,12 @@ class Quiz extends React.Component {
         , resp4 = await getLyric.json();
 
       //GOT SONG LYRIC
-      return JSON.parse(resp4).message.body.snippet.snippet_body;
+      try {
+        return JSON.parse(resp4).message.body.snippet.snippet_body;
+      } catch(err) {
+        console.warn(err);
+        this.launchQuiz();
+      }
     };
 
     console.info('Starting quiz');
@@ -85,17 +78,11 @@ class Quiz extends React.Component {
     console.info('Correct Answer is ----->', this.artist);
 
     getSong(this.artist).then(song => {
-      if (fromScratch) {
-        this.state = {song};
-      } else {
-        this.setState({
-          song
-        });
-      }
-      this.props.startQuiz();
+      this.setState({
+        song
+      });
       console.info('Song Snippet Lyric is ---->', this.state.song);
     }).catch(err => {
-      this.props.stopQuiz();
       this.launchQuiz();
       console.error(err);
     });
@@ -103,6 +90,9 @@ class Quiz extends React.Component {
 
   answerQuiz(artist) {
     //increment answers to reach quiz end
+    this.setState({
+      'song': false
+    });
     this.QUIZ_ANSWERS = this.QUIZ_ANSWERS + 1;
     //give answer points
     if (artist.toLowerCase() === this.artist.toLowerCase()) {
@@ -118,14 +108,14 @@ class Quiz extends React.Component {
       this.props.history.push('/quizend');
     } else {
     //continue quiz
-      this.props.stopQuiz();
       this.launchQuiz();
     }
   }
 
   render() {
     return <div>
-      <div className="loading center-content line">
+      <div className={`loading center-content line hide
+        ${this.state.song === false ? 'show' : ''}`}>
       <div className="separator50"></div>
       <div className="separator50"></div>
         <div className="spinner">
@@ -136,11 +126,13 @@ class Quiz extends React.Component {
       </div>
       <section className="center-content quiz">
       <div className="line">
-        <h1 className="col8 offset-left1 animated fadeInDown song">
+        <h1 className={`col8 offset-left1 animated fadeInDown song hide
+            ${this.state.song && this.state.song.length > 0 ? 'show' : ''}`}>
           {this.state.song}...
         </h1>
         <div className="line fixed bottom left">
-          <div className="line animated fadeInUp">
+          <div className={`line animated fadeInUp hide
+           ${this.state.song && this.state.song.length > 0 ? 'show' : ''}`}>
         {this.artists.map((artist, index) => {
         return (
           <a className={`line answer-${index}`} key={artist} onClick={() => { this.answerQuiz(artist) }} >
@@ -156,4 +148,4 @@ class Quiz extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Quiz);
+export default connect(mapStateToProps)(Quiz);
