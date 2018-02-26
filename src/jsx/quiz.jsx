@@ -19,7 +19,7 @@ class Quiz extends React.Component {
     this.init(true);
     this.state = {
       'song': false
-    }
+    };
   }
 
   componentWillReceiveProps() {
@@ -64,7 +64,7 @@ class Quiz extends React.Component {
       //GOT SONG LYRIC
       try {
         return JSON.parse(resp4).message.body.snippet.snippet_body;
-      } catch(err) {
+      } catch (err) {
         console.warn(err);
         this.launchQuiz();
       }
@@ -134,7 +134,10 @@ class Quiz extends React.Component {
            ${this.state.song && this.state.song.length > 0 ? 'show' : ''}`}>
         {this.artists.map((artist, index) => {
         return (
-          <a className={`line answer-${index}`} key={artist} onClick={() => { this.answerQuiz(artist) }} >
+          <a className={`line answer-${index}`} key={artist}
+            onClick={() => {
+              this.answerQuiz(artist);
+            }}>
            {artist}
          </a>
         );
