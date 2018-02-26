@@ -12,7 +12,7 @@ import {Router} from 'react-router-dom';
 
 const WS_URL = configs.WS_URL
   , mapStateToProps = ({show, start, artists}) => ({show, start, artists});
-  
+
 class Quiz extends React.Component {
   constructor(props) {
     super(props);
@@ -104,7 +104,6 @@ class Quiz extends React.Component {
       this.QUIZ_ANSWERS = 0;
       localStorage.setItem('LATEST_QUIZ_SCORE', this.QUIZ_POINTS);
       console.log('Your score is ---->', this.QUIZ_POINTS, this.artist);
-      //this.props.showQuizEnd();
       this.props.history.push('/quizend');
     } else {
     //continue quiz

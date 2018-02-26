@@ -5,14 +5,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-const mapStateToProps = ({show}) => ({show})
-  , mapDispatchToProps = {
-    'showUser': () => {
-      return {
-        'type': 'SHOW_USER'
-      };
-    }
-  };
+const mapStateToProps = ({show}) => ({show});
 
 class QuizEnd extends React.Component {
 
@@ -53,10 +46,14 @@ class QuizEnd extends React.Component {
           'scores': [localStorage.LATEST_QUIZ_SCORE]
         });
       }
-
+      
       localStorage.db = JSON.stringify(db);
     }
     /*eslint-enable*/
+  }
+
+  goToUserPage() {
+    this.props.history.push('/user');
   }
 
   retrieveSessionUsername() {
@@ -76,7 +73,7 @@ class QuizEnd extends React.Component {
           type="text" placeholder="Your name..." />
         <button className="line fixed bottom left" type="button"
           onFocus={this.saveToDB}
-          onClick={this.props.showUser}>
+          onClick={this.goToUserPage}>
           Save
         </button>
       </div>
@@ -84,4 +81,4 @@ class QuizEnd extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuizEnd);
+export default connect(mapStateToProps)(QuizEnd);
