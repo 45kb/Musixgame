@@ -29,8 +29,7 @@ React, Redux, Webpack, Express
 ## Game configuration
 
 Just open and edit the main `config.json` now you can configure:
+- the array of artists you want to be on quiz (atm static array)
 - the number of answers each quiz must have (quiz duration)
 - the points for each correct answer
 - api url, key and ws url.
-
-Just open https://github.com/45kb/Musixgame/blob/master/src/reducers/index.js#L5 if you want to change the artists array, these artists could be even took from some database or however dinamically in case.
