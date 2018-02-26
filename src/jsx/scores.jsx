@@ -3,10 +3,7 @@
 /*List of all the user's highscores*/
 
 import React from 'react';
-import {connect} from 'react-redux';
 import _ from 'underscore';
-
-const mapStateToProps = ({show}) => ({show});
 
 class Scores extends React.Component {
   constructor(props) {
@@ -54,4 +51,4 @@ class Scores extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(Scores);
+export default Scores;

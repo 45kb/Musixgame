@@ -62,7 +62,7 @@ class Quiz extends React.Component {
 
         if (!snippet ||
           snippet && snippet.length <= 0) {
-          throw 'Snippet arrived but is empty :/ :O';
+          throw 'Snippet arrived but is empty :/ :O woooot?';
         }
         //GOT SONG LYRIC
         return snippet;

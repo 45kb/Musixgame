@@ -3,9 +3,6 @@
 /*User will give its username*/
 
 import React from 'react';
-import {connect} from 'react-redux';
-
-const mapStateToProps = ({show}) => ({show});
 
 class QuizEnd extends React.Component {
 
@@ -82,4 +79,4 @@ class QuizEnd extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(QuizEnd);
+export default QuizEnd;

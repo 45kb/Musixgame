@@ -2,7 +2,7 @@
   "WS_URL": "http://localhost:3000/",
   "API_URL": "http://api.musixmatch.com/ws/1.1/",
   "API_KEY": "c5377b5067a16ee625ed8f53d71ec71d",
-  "QUIZ_MAX_ANSWERS": "2",
+  "QUIZ_MAX_ANSWERS": "6",
   "QUIZ_CORRECT_ANSWER_POINTS": "50",
   "artists": [
     "Beastie Boys",

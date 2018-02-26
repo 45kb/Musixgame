@@ -1,7 +1,7 @@
 /*global localStorage */
 import React from 'react';
 /*eslint-disable*/
-import {BrowserRouter, Route, Link} from 'react-router-dom';
+import {BrowserRouter, Route} from 'react-router-dom';
 /*eslint-enable*/
 
 import 'csshelper/dist/helper.min.css';
