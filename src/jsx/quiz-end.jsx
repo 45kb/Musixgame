@@ -46,7 +46,7 @@ class QuizEnd extends React.Component {
           'scores': [localStorage.LATEST_QUIZ_SCORE]
         });
       }
-      
+
       localStorage.db = JSON.stringify(db);
     }
     /*eslint-enable*/

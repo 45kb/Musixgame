@@ -32,10 +32,10 @@ class App extends React.Component {
     return <BrowserRouter>
       <div className="line">
       <Navbar></Navbar>
-      <Route path="/user" component={User}/>
+      <Route path="/user" exact component={User}/>
       <Route path="/" exact component={Quiz}/>
-      <Route path="/quizend" component={QuizEnd}/>
-      <Route path="/scores" component={Scores}/>
+      <Route path="/quizend" exact component={QuizEnd}/>
+      <Route path="/scores" exact component={Scores}/>
     </div>
     </BrowserRouter>;
   }
