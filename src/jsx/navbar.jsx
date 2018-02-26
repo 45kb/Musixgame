@@ -2,28 +2,9 @@
 /*simply menu buttons*/
 
 import React from 'react';
-import {connect} from 'react-redux';
-/*maps the redux state properties into component props --see reducers/index.js */
-const mapStateToProps = ({show}) => ({show})
-/*maps the redux actions to dispatch into component props --see reducers/index.js */
-  , mapDispatchToProps = {
-    'showQuiz': () => {
-      return {
-        'type': 'SHOW_QUIZ'
-      };
-    },
-    'showUser': () => {
-      return {
-        'type': 'SHOW_USER'
-      };
-    },
-    'showScores': () => {
-      return {
-        'type': 'SHOW_SCORES'
-      };
-    }
-  };
-
+/*eslint-disable*/
+import { NavLink } from 'react-router-dom';
+/*eslint-enable*/
 class Navbar extends React.Component {
   constructor(props) {
     super(props);
@@ -31,23 +12,19 @@ class Navbar extends React.Component {
 
   render() {
     return <section className="center-content line menu fixed top left layer2">
-
-      <a onClick={this.props.showScores} className={`col3 center-content
-           ${this.props.show === 'scores' ? 'active' : ''}`}>
+      <NavLink exact to="/scores" activeClassName="active" className="col3 center-content">
         <i className="fa fa-star-o"></i>
-      </a>
+      </NavLink>
 
-      <a onClick={this.props.showQuiz} className={`col4 center-content
-           ${this.props.show === 'quiz' || this.props.show === 'quiz-end' ? 'active' : ''}`}>
+      <NavLink exact to="/" activeClassName="active" className="col4 center-content">
         <i className="fa fa-play-circle"></i>
-      </a>
+      </NavLink>
 
-      <a onClick={this.props.showUser} className={`col3 center-content
-            ${this.props.show === 'user' ? 'active' : ''}`}>
+      <NavLink exact to="/user" activeClassName="active" className="col3 center-content">
         <i className="fa fa-smile-o"></i>
-      </a>
+      </NavLink>
     </section>;
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default Navbar

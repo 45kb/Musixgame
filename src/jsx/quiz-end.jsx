@@ -3,21 +3,12 @@
 /*User will give its username*/
 
 import React from 'react';
-import {connect} from 'react-redux';
-
-const mapStateToProps = ({show}) => ({show})
-  , mapDispatchToProps = {
-    'showUser': () => {
-      return {
-        'type': 'SHOW_USER'
-      };
-    }
-  };
 
 class QuizEnd extends React.Component {
 
   constructor(props) {
     super(props);
+    this.goToUserPage = this.goToUserPage.bind(this);
   }
 
   setUsername(event) {
@@ -59,13 +50,16 @@ class QuizEnd extends React.Component {
     /*eslint-enable*/
   }
 
+  goToUserPage() {
+    this.props.history.push('/user');
+  }
+
   retrieveSessionUsername() {
     return localStorage.username || false;
   }
 
   render() {
-    return <section className={`center-content quizend
-        ${this.props.show === 'quiz-end' ? 'show' : 'hide' }`}>
+    return <section className="center-content quizend">
       <h1 className="line-compress">
         Your Score is
         <div className="separator30"></div>
@@ -77,7 +71,7 @@ class QuizEnd extends React.Component {
           type="text" placeholder="Your name..." />
         <button className="line fixed bottom left" type="button"
           onFocus={this.saveToDB}
-          onClick={this.props.showUser}>
+          onClick={this.goToUserPage}>
           Save
         </button>
       </div>
@@ -85,4 +79,4 @@ class QuizEnd extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuizEnd);
+export default QuizEnd;

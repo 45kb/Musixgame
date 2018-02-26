@@ -1,24 +1,14 @@
-/*global localStorage window*/
+/*global localStorage*/
 /*User component*/
 /*** User can logout ***/
 
 import React from 'react';
-import {connect} from 'react-redux';
 import _ from 'underscore';
-
-const mapStateToProps = ({show}) => ({show})
-  , mapDispatchToProps = {
-    'showQuiz': () => {
-      return {
-        'type': 'SHOW_QUIZ'
-      };
-    }
-  };
 
 class User extends React.Component {
   constructor(props) {
     super(props);
-
+    this.goToQuizPage = this.goToQuizPage.bind(this);
     //must do this to rerender localStorage data
     //for sure there is a better way but i c an't find one atm
     this.init = () => {
@@ -56,12 +46,15 @@ class User extends React.Component {
   logout() {
     localStorage.removeItem('username');
     localStorage.removeItem('LATEST_QUIZ_SCORE');
-    window.location.reload();
+    this.props.history.push('/');
+  }
+
+  goToQuizPage() {
+    this.props.history.push('/');
   }
 
   render() {
-    return <section onLoad={this.init()} className={`center-content user hide
-         ${this.props.show === 'user' ? 'show' : '' }`}>
+    return <section onLoad={this.init()} className="center-content user">
       <h1 className="line-compress">
         {this.retrieveSessionUsername() || 'Hey Anonymous!'}
       </h1>
@@ -80,7 +73,7 @@ class User extends React.Component {
       </div>
       <div className={`line fixed bottom left
           ${this.retrieveSessionUsername() ? 'hide' : ''}`}>
-          <button onClick={this.props.showQuiz}>
+          <button onClick={this.goToQuizPage}>
             Take the quiz
           </button>
       </div>
@@ -88,4 +81,4 @@ class User extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(User);
+export default User;

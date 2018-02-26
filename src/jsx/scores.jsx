@@ -3,10 +3,7 @@
 /*List of all the user's highscores*/
 
 import React from 'react';
-import {connect} from 'react-redux';
 import _ from 'underscore';
-
-const mapStateToProps = ({show}) => ({show});
 
 class Scores extends React.Component {
   constructor(props) {
@@ -36,8 +33,7 @@ class Scores extends React.Component {
   }
 
   render() {
-    return <section onLoad={this.init()} className={`center-content scores hide
-         ${this.props.show === 'scores' ? 'show' : '' }`}>
+    return <section onLoad={this.init()} className='center-content scores'>
       <h1 className="line-compress">
         Highest Scores
       </h1>
@@ -55,4 +51,4 @@ class Scores extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(Scores);
+export default Scores;
