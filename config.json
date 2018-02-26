@@ -2,6 +2,6 @@
   "WS_URL": "http://localhost:3000/",
   "API_URL": "http://api.musixmatch.com/ws/1.1/",
   "API_KEY": "bf40802cb625030eaa5e7d73148cf5fc",
-  "QUIZ_MAX_ANSWERS": "2",
+  "QUIZ_MAX_ANSWERS": "6",
   "QUIZ_CORRECT_ANSWER_POINTS": "50"
 }
