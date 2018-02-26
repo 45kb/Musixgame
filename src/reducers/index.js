@@ -1,46 +1,7 @@
 /*global console*/
 const initialState = {
   'show': 'quiz',
-  'start': false,
-  'artists': [
-    'Lunapop',
-    'Orietta Berti',
-    'Verdena',
-    'Beastie Boys',
-    'Ben Harper',
-    'Bloc Party',
-    'Eminem',
-    'Elvis Presley',
-    'Fatboy Slim',
-    'Groove Armada',
-    'Michael Jackson',
-    'Muse',
-    'Coldplay',
-    'Morcheeba',
-    'Led zeppelin',
-    'Carmen Consoli',
-    'Bob Marley',
-    'Gino Paoli',
-    'Metallica',
-    'Fiorella Mannoia',
-    'Frank Sinatra',
-    'Andrea Bocelli',
-    'Beatles',
-    'The Cardigans',
-    'The Chemical Brothers',
-    'Beck',
-    'Smash Mouth',
-    'Blur',
-    'Limp Bizkit',
-    'Cypress Hill',
-    'Madonna',
-    'Sting',
-    'Zucchero',
-    'Marshmello',
-    'Nirvana',
-    'Wiz Khalifa',
-    'Jack Johnson'
-  ]
+  'start': false
 };
 
 export default (state = initialState, action) => {

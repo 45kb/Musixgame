@@ -3,20 +3,18 @@
 /*The game starts here*/
 
 import React from 'react';
-import {connect} from 'react-redux';
 import _ from 'underscore';
 import configs from '../../config.json';
 /*eslint-disable*/
 import {Router} from 'react-router-dom';
 /*eslint-enable*/
 
-const WS_URL = configs.WS_URL
-  , mapStateToProps = ({show, start, artists}) => ({show, start, artists});
+const WS_URL = configs.WS_URL;
 
 class Quiz extends React.Component {
   constructor(props) {
     super(props);
-    this.init(true);
+    this.init();
     this.state = {
       'song': false
     };
@@ -36,7 +34,6 @@ class Quiz extends React.Component {
 
   launchQuiz() {
     const getSong = async artist => {
-      try {
         let getArtist = await fetch(`${WS_URL}artist?name=${artist}`)
           , resp1 = await getArtist.json()
           , artistID = JSON.parse(resp1).message.body.artist_list[0].artist.artist_id;
@@ -60,18 +57,19 @@ class Quiz extends React.Component {
         console.info('Track ID is:', trackID);
 
         let getLyric = await fetch(`${WS_URL}artist/song/snippet?track_id=${trackID}`)
-          , resp4 = await getLyric.json();
+          , resp4 = await getLyric.json()
+          , snippet = JSON.parse(resp4).message.body.snippet.snippet_body;
 
+        if (!snippet ||
+          snippet && snippet.length <= 0) {
+          throw 'Snippet arrived but is empty :/ :O';
+        }
         //GOT SONG LYRIC
-        return JSON.parse(resp4).message.body.snippet.snippet_body;
-      } catch (err) {
-        console.warn(err);
-        this.launchQuiz();
-      }
+        return snippet;
     };
 
     console.info('Starting quiz');
-    this.artists = _.sample(this.props.artists, 3);
+    this.artists = _.sample(configs.artists, 3);
     this.artist = _.sample(this.artists, 1)[0];
 
     console.info('Random artists are', this.artists);
@@ -84,7 +82,7 @@ class Quiz extends React.Component {
       console.info('Song Snippet Lyric is ---->', this.state.song);
     }).catch(err => {
       this.launchQuiz();
-      console.error(err);
+      console.warn(err);
     });
   }
 
@@ -93,7 +91,9 @@ class Quiz extends React.Component {
     this.setState({
       'song': false
     });
+
     this.QUIZ_ANSWERS = this.QUIZ_ANSWERS + 1;
+
     //give answer points
     if (artist.toLowerCase() === this.artist.toLowerCase()) {
       this.QUIZ_POINTS = this.QUIZ_POINTS + this.QUIZ_CORRECT_ANSWER_POINTS;
@@ -150,4 +150,4 @@ class Quiz extends React.Component {
   }
 }
 
-export default connect(mapStateToProps)(Quiz);
+export default Quiz;

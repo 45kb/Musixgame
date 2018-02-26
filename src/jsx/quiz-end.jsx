@@ -11,6 +11,7 @@ class QuizEnd extends React.Component {
 
   constructor(props) {
     super(props);
+    this.goToUserPage = this.goToUserPage.bind(this);
   }
 
   setUsername(event) {
