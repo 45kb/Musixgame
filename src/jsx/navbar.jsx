@@ -4,28 +4,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 /*eslint-disable*/
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 /*eslint-enable*/
 /*maps the redux state properties into component props --see reducers/index.js */
-const mapStateToProps = ({show}) => ({show})
-/*maps the redux actions to dispatch into component props --see reducers/index.js */
-  , mapDispatchToProps = {
-    'showQuiz': () => {
-      return {
-        'type': 'SHOW_QUIZ'
-      };
-    },
-    'showUser': () => {
-      return {
-        'type': 'SHOW_USER'
-      };
-    },
-    'showScores': () => {
-      return {
-        'type': 'SHOW_SCORES'
-      };
-    }
-  };
+const mapStateToProps = ({show}) => ({show});
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -34,19 +16,19 @@ class Navbar extends React.Component {
 
   render() {
     return <section className="center-content line menu fixed top left layer2">
-      <Link to="/scores" className="col3 center-content">
+      <NavLink to="/scores" activeClassName="active" className="col3 center-content">
         <i className="fa fa-star-o"></i>
-      </Link>
+      </NavLink>
 
-      <Link to="/" className="col4 center-content">
+      <NavLink exact to="/" activeClassName="active" className="col4 center-content">
         <i className="fa fa-play-circle"></i>
-      </Link>
+      </NavLink>
 
-      <Link to="/user" className="col3 center-content">
+      <NavLink to="/user" activeClassName="active" className="col3 center-content">
         <i className="fa fa-smile-o"></i>
-      </Link>
+      </NavLink>
     </section>;
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default connect(mapStateToProps)(Navbar);
