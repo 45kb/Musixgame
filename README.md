@@ -29,7 +29,7 @@ React, Redux, Webpack, Express
 ## Game configuration
 
 Just open and edit the main `config.json` now you can configure:
-- the array of artists you want to be on quiz (atm static array)
+- the array of artists you want to be in the game (atm static array)
 - the number of answers each quiz must have (quiz duration)
-- the points for each correct answer
+- the points you earn for each correct answer
 - api url, key and ws url.
