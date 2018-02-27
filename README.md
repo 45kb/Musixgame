@@ -4,9 +4,9 @@
 > Guess who sings the song.
 
 JS major libraries in use:
-React, Redux, Webpack, Express
+React, Webpack, Express
 
-![](https://i.imgur.com/MJtBirg.png)
+![](https://i.imgur.com/NspefmM.png)
 
 ## Installation
 
