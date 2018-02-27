@@ -4,7 +4,10 @@
 > Guess who sings the song.
 
 JS major libraries in use:
-React, Webpack, Node.js/Express
+**React**, **Webpack**, **Node.js/Express**
+
+API: https://developer.musixmatch.com
+
 
 ![](https://i.imgur.com/NspefmM.png)
 
@@ -12,14 +15,14 @@ React, Webpack, Node.js/Express
 
 > $ npm i
 
-## Start server
+## Launch server
 
 > $ npm run server
 
 #### server starts at http://localhost:3000
 
 
-## Start webapp
+## Launch webapp
 
 > $ npm start
 
