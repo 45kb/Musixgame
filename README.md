@@ -4,7 +4,7 @@
 > Guess who sings the song.
 
 JS major libraries in use:
-React, Webpack, Express
+React, Webpack, Node.js/Express
 
 ![](https://i.imgur.com/NspefmM.png)
 
