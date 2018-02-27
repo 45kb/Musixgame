@@ -20,10 +20,6 @@ class Quiz extends React.Component {
     };
   }
 
-  componentWillReceiveProps() {
-    this.init();
-  }
-
   init() {
     this.QUIZ_ANSWERS = 0;
     this.QUIZ_MAX_ANSWERS = Number(configs.QUIZ_MAX_ANSWERS);
