@@ -13,7 +13,7 @@ API: https://developer.musixmatch.com
 
 ## Installation
 
-> $ npm i
+> $ git clone https://github.com/45kb/Musixgame.git && cd Musixgame && npm i
 
 ## Launch server
 
