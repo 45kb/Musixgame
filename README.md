@@ -3,8 +3,9 @@
 
 > Guess who sings the song.
 
-JS major libraries in use:
-**React**, **Webpack**, **Node.js/Express**
+Javascript: **React**, **Webpack**, **Node.js/Express**
+
+CSS: **SASS**
 
 API: https://developer.musixmatch.com
 
