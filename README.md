@@ -5,7 +5,7 @@
 
 Javascript: **React**, **Webpack**, **Node.js/Express**
 
-CSS: **SASS**
+CSS: **Sass**
 
 API: https://developer.musixmatch.com
 
