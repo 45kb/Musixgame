@@ -9,8 +9,8 @@ class User extends React.Component {
   constructor(props) {
     super(props);
     this.goToQuizPage = this.goToQuizPage.bind(this);
-    //must do this to rerender localStorage data
-    //for sure there is a better way but i c an't find one atm
+    this.logout = this.logout.bind(this);
+
     this.init = () => {
 
       this.scores = [];
