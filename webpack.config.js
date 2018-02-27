@@ -15,6 +15,9 @@ const {resolve} = require('path')
       'pathinfo': !env.prod,
       'libraryTarget': 'umd'
     },
+    'devServer': {
+      'historyApiFallback': true
+    },
     'devtool': 'source-map',
     'module': {
       'rules': [
